@@ -3,7 +3,7 @@ let popupRef = document.querySelector(".popup");
 let newgameBtn = document.getElementById("new-game");
 let restartBtn = document.getElementById("restart");
 let msgRef = document.getElementById("message");
-//Winning Pattern Array
+
 let winningPattern = [
   [0, 1, 2],
   [0, 3, 6],
@@ -14,28 +14,26 @@ let winningPattern = [
   [0, 4, 8],
   [2, 4, 6],
 ];
-//Player 'X' plays first
 let xTurn = true;
 let count = 0;
 
-//Disable All Buttons
+
 const disableButtons = () => {
   btnRef.forEach((element) => (element.disabled = true));
   //enable popup
   popupRef.classList.remove("hide");
 };
 
-//Enable all buttons (For New Game and Restart)
+
 const enableButtons = () => {
   btnRef.forEach((element) => {
     element.innerText = "";
     element.disabled = false;
   });
-  //disable popup
+
   popupRef.classList.add("hide");
 };
 
-//This function is executed when a player wins
 const winFunction = (letter) => {
   disableButtons();
   if (letter == "X") {
@@ -45,13 +43,13 @@ const winFunction = (letter) => {
   }
 };
 
-//Function for draw
+
 const drawFunction = () => {
   disableButtons();
   msgRef.innerHTML = "&#x1F60E; <br> It's a Draw";
 };
 
-//New Game
+
 newgameBtn.addEventListener("click", () => {
   count = 0;
   enableButtons();
@@ -61,7 +59,6 @@ restartBtn.addEventListener("click", () => {
   enableButtons();
 });
 
-//Win Logic
 const winChecker = () => {
   //Loop through all win patterns
   for (let i of winningPattern) {
@@ -81,7 +78,6 @@ const winChecker = () => {
   }
 };
 
-//Display X/O on click
 btnRef.forEach((element) => {
   element.addEventListener("click", () => {
     if (xTurn) {
